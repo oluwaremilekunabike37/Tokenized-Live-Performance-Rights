@@ -7,3 +7,7 @@ P
  tests/venue-registration.test.ts,0/5/058b6817d4db55225dd262e1ad37cbfdf1d1f9b2
 T
 $tests/performer-verification.test.ts,d/b/dbc90cbb7eb505eb47169845e8d28f1126710be2
+Q
+!contracts/venue-registration.clar,3/b/3b9298916111b6701dd8824987add50c6cfe9f7a
+=
+Clarinet.toml,9/d/9d284ad9ceb4c6d6525244c8f2230e5943b9c9b2
