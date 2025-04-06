@@ -1,0 +1,26 @@
+[project]
+name = 'Tokenized-Live-Performance-Rights'
+description = ''
+authors = []
+telemetry = true
+cache_dir = './.cache'
+requirements = []on = 2
+epoch = 2.5
+
+[contracts.performer-verification]
+path = 'contracts/performer-verification.clar'
+clarity_version = 2
+epoch = 2.5
+
+[contracts.venue-registration]
+path = 'contracts/venue-registration.clar'
+clarity_version = 2
+epoch = 2.5
+[repl.analysis]
+passes = ['check_checker']
+
+[repl.analysis.check_checker]
+strict = false
+trusted_sender = false
+trusted_caller = false
+callee_filter = false
