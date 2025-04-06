@@ -1,30 +1,48 @@
+;; Performer Verification Contract
+;; This contract validates legitimate artists and musicians
 
-;; title: performer-verification
-;; version:
-;; summary:
-;; description:
+(define-data-var admin principal tx-sender)
 
-;; traits
-;;
+;; Data map to store verified performers
+(define-map performers principal
+  {
+    name: (string-utf8 100),
+    verified: bool,
+    genre: (string-utf8 50),
+    registration-date: uint
+  }
+)
 
-;; token definitions
-;;
+;; Public function to register a performer (only admin can verify)
+(define-public (register-performer (name (string-utf8 100)) (genre (string-utf8 50)))
+  (begin
+    (asserts! (is-eq tx-sender (var-get admin)) (err u1))
+    (ok (map-set performers tx-sender
+      {
+        name: name,
+        verified: true,
+        genre: genre,
+        registration-date: block-height
+      }
+    ))
+  )
+)
 
-;; constants
-;;
+;; Read-only function to check if a performer is verified
+(define-read-only (is-verified-performer (performer-address principal))
+  (default-to false (get verified (map-get? performers performer-address)))
+)
 
-;; data vars
-;;
+;; Read-only function to get performer details
+(define-read-only (get-performer-details (performer-address principal))
+  (map-get? performers performer-address)
+)
 
-;; data maps
-;;
-
-;; public functions
-;;
-
-;; read only functions
-;;
-
-;; private functions
-;;
+;; Function to transfer admin rights
+(define-public (transfer-admin (new-admin principal))
+  (begin
+    (asserts! (is-eq tx-sender (var-get admin)) (err u2))
+    (ok (var-set admin new-admin))
+  )
+)
 

@@ -4,8 +4,7 @@ description = ''
 authors = []
 telemetry = true
 cache_dir = './.cache'
-requirements = []on = 2
-epoch = 2.5
+requirements = []
 
 [contracts.performer-verification]
 path = 'contracts/performer-verification.clar'
